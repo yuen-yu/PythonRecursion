@@ -1,0 +1,47 @@
+Input file
+
+* 0 2
+C 1 0
+? 1 1
+? 1 2
+? 2 1
+? 3 0
+? 3 1
+? 3 2
+? 4 0
+? 4 2
+B 5 0
+A 5 2
+
+The input file will look as such in a 2D grid
+
+*	?		?	?	A
+(0,2)	(1,2)		(3,2)	(4,2)	(5,2)
+
+	?	?	?
+	(1,1)	(2,1)	(3,1)
+
+	C		?	?	B
+	(1,0)		(3,0)	(4,0)	(5,0)
+
+
+Assumptions:
+ 
+For pipe ?, it has 2 ports and 1 node. If the node is at (0,0), the ports is at (-1,0) and (1,0). 
+Similarly, for pipe  ?, it has 3 ports and 1 node.  If the node is at (0,0), the ports is at (-1,0), (0,1) and (0,-1).
+
+
+Pseudo code for the application.
+
+Create a table for the source, all pipes, and sinks with its location and port(s)
+GET the source
+GET the port(s) and node(s) connected to the source
+ADD the node(s) to Node[]
+DO
+	STORE the node / sink to a list[]
+	GET other port(s) on the same node
+	GET (port(s) on other pipe(s)) or (sink(s)) which is/are connected to 	previous port 
+	WHILE found port(s)
+		ADD the node(s) of other port(s) to Node[]
+WHILE Node[] is not empty
+Output list[]
